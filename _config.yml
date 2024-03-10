@@ -21,7 +21,7 @@ repository               : "atifkhanncl.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : #
+  avatar           : "profile.jpg"
   name             : "Atif Khan"
   pronouns         : #  
   bio              : "PhD Candidate at Newcastle University. Expert in Machine Learning, Computer Vision applied to Biomedicine"
