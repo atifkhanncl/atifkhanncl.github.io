@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/introNCL_SM
 excerpt: ''
 date: 2023-12-01
-venue: 'Journal 1'
+venue: 'Machine Learning for Health (ML4H) symposium 2023'
 paperurl: 'https://arxiv.org/abs/2311.11099'
 citation: 'A. Khan et al., "Introducing NCL-SM: A Fully Annotated Dataset of Images from Human Skeletal Muscle Biopsies," Machine Learning for Health (ML4H) symposium 2023, December 10th, 2023, New Orleans, United States, doi: 10.48550/arXiv.2311.11099'
 ---
