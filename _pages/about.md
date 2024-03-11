@@ -10,10 +10,11 @@ redirect_from:
 Hello! I am a final-year PhD candidate in Machine Learning to understand Mitochondrial Disease Pathology at [Wellcome Centre for Mitochondrial Research](https://www.newcastle-mitochondria.com/) and [EPSRC CDT for Big Data](https://www.ncl.ac.uk/bigdata/), [Newcastle University](https://www.ncl.ac.uk/). I am a member of [Newcastle AI Lab](https://research.ncl.ac.uk/nail/) led by Prof. [Stephen McGough](https://www.ncl.ac.uk/computing/staff/profile/stephenmcgough.html). I am advised by Prof. [Stephen McGough](https://www.ncl.ac.uk/computing/staff/profile/stephenmcgough.html), Dr. [Conor Lawless](https://www.ncl.ac.uk/medical-sciences/people/profile/conorlawless.html) and  Dr. [Amy Vincent](https://www.ncl.ac.uk/medical-sciences/people/profile/amyvincent.html).
 
 
-My research focuses on applying artificial intelligence/machine learning methods to understand mitochondrial disease pathology. I work with tissue image data (Image Mass Cytometry & immunofluorescence) with an aim to automate (where possible) the process of understanding disease pathology i.e. i) Upstream Data Preparation: this include precise segmentation and curation (selecting cells with good uniform quality) of single-cells in tissue images using novel machine learning (ML) methods. ii) Downstream Data Analysis: this include using ML to classify deficient (affected by disease) cells based on multi-dimensional protein expression data. And iii) Using explainable ML profile various genetically diagnosed mitochondrial diseases based on their protein expression data.
+My research focuses on applying artificial intelligence/machine learning methods to understand mitochondrial disease pathology. I work with tissue image data (Image Mass Cytometry & Immunofluorescence) with an aim to automate (where possible) the process of understanding disease pathology which includes i) Upstream Data Preparation: this include precise segmentation and curation (selecting cells with good uniform quality) of single-cells in tissue images using novel machine learning (ML) methods. ii) Downstream Data Analysis: this include using ML to classify deficient (affected by disease) cells based on multi-dimensional protein expression data. And iii) Using explainable ML profile various genetically diagnosed mitochondrial diseases based on their protein expression data.
+
 The experience of working on these topics allowed me to develop expertise in Machine Learning, Computer Vision, Explainable ML, Biomedical Image Data (IMC & Microscopy).
 
-Prior to this I spent 8 years as a DevOps and Software Engineer, developing big data applications in cloud. This allowed me to develop expertise in Java, OpenShift , Python and various public cloud services.
+Prior to this I spent 8 years as a DevOps and Software Engineer, developing big data applications in cloud. This help me built expertise in Java, OpenShift , Python and various public cloud services.
 
 ## Education
 
@@ -38,4 +39,4 @@ Prior to this I spent 8 years as a DevOps and Software Engineer, developing big 
     
     Jawaharlal Nehru Technological University, Hyderabad, India.
 ## Update Spring 2024:
-### I am on the available on the job market for Post Doctoral research positions either in academia or industry from April 2024. Please feel free to reach out (a.khan21@newcastle.ac.uk or atif.khan.ncl@gmail.com) if you think I would be a good fit.
+### I am available on the job market for Post Doctoral research positions either in academia or industry from April 2024. Please feel free to reach out (a.khan21@newcastle.ac.uk or atif.khan.ncl@gmail.com) if you think I would be a good fit.
