@@ -41,7 +41,27 @@ Complete - This just need to be defined as a method within your model class.
 Minimal - You can train your models without making any change and define optimiser as standard pytorch optimiser = torch.AdamW(model.parameters(), lr=learning_rate).
 Complete - This just need to be defined as a method within your model class.
 
-[5] Training as Slurm sbatch job: 
+[5] Training as Slurm sbatch job: To train as cluster the nodes and GPU numbers should match in trainer invokation and sbatch.sh file. As an example, to employ 5 nodes with 4 GPUs. Within you python training file you need to invoke trainer with following parameters.
+
+```trainer = lightning.Trainer(accelerator='gpu',devices=4,num_nodes=5, strategy="ddp",callbacks=[checkpoint_callback,early_stopping ])``` ```# devices = gpus; num_nodes = nodes```
+
+And the corresponding slurm job file will look like 
+```
+#!/bin/bash
+#SBATCH --job-name=somename
+#SBATCH --nodes=5
+#SBATCH --gres=gpu:4
+#SBATCH --ntasks-per-node=4
+#SBATCH --mem=96g
+#SBATCH --output=/mnt/scratchc/ralab/atif/jobOutputs/somename.out
+#SBATCH --error=/mnt/scratchc/ralab/atif/jobErrors/somename.err
+#SBATCH --time=0-02:00:00
+#SBATCH --cpus-per-task 10
+#SBATCH --partition rocm
+srun python /mnt/scratchc/ralab/atif/path/train_model_multigpus.py
+
+```
+
 
 
 
