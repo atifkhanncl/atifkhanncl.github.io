@@ -35,14 +35,14 @@ Complete- But if you do want to use full lightning's data abstraction functional
 
 [3] Loss:<br>
 Minimal - You can train your models without making any change and define loss as standard pytorch ```criterion = nn.BCEWithLogitsLoss()```.<br>
-Complete - This just need to be defined as a method within your model class. <br>
+Complete - This need the loss to be defined as a method within your model class. <br>
 
 [4] Optimiser:<br>
 Minimal - You can train your models without making any change and define optimiser as standard pytorch ```optimiser = torch.AdamW(model.parameters(), lr=learning_rate)```.<br>
-Complete - This just need to be defined as a method within your model class.<br>
+Complete - This need Optimiser to be defined as a method within your model class.<br>
 
-[5] Training as Slurm sbatch job:<br>
-To train as cluster the nodes and GPU numbers should match in trainer invocation and ```sbatch.sh``` file. As an example, to employ 5 nodes with 4 GPUs. Within you python training file you need to invoke trainer with following parameters.<br>
+[5] Training as slurm job:<br>
+To train on cluster, the nodes and GPU numbers should match in trainer invocation and ```sbatch.sh``` file. As an example, to employ 5 nodes with 4 GPUs each. Within your python training file you need to invoke trainer with following parameters.<br>
 
 ```trainer = lightning.Trainer(accelerator='gpu',devices=4,num_nodes=5, strategy="ddp",callbacks=[checkpoint_callback,early_stopping ])``` ```# devices = gpus; num_nodes = nodes```<br>
 
