@@ -12,14 +12,14 @@ You're now ready to train pytorch models either in interactive mode (jupyter not
 Training models on multiple GPUs require each training batch to be split across GPUs and corresponding gradients to be syncronised. There are different ways of doing this, one of which is using [lightning ai](https://lightning.ai/) package. Below is dscribtion of adapting your pytorch code for this including a couple links to toy examples.\
 lightning is a wrapper for pytorch's nn.module that simplify and abstract the process of training models. To adapt your pytorch code to lightning require changes in five places\
 
-[1] Model: This is straigforward- most pytorch models are made by extending nn.Module, The only change required is using lightning.LightningModule instead of nn.Module i.e. swap nn.Module with L.LightningModule in the code. 
+[1] Model: The amount of change require in your model code depend on how many abstraction functionalities of lightning you want you use - You can do away by changing just one- most pytorch models are made by extending nn.Module, the only change required is using lightning.LightningModule instead of nn.Module i.e. swap nn.Module with L.LightningModule in the code. 
 
-[2] Data: The amount of change require in your data processing/loading code depends on how many adptraction functionality of lightning you want you use. You can train your models without making any change and feed the lightning adapted model with standard train_dataloader, validation_dataloader. But if you do want to use lightning's data abstraction functionalities, you need to create a 'DataModule' class by extending lightning.LightningDataModule class, within there can be methods/functions for following tasks
-- [constructor()] a constructor function that intialise all parameters/variables
-- [prepare_data()] Used for any data-related setup that happens only once, such as loading raw datasets or preprocessing raw data.This is because each GPU will execute the same PyTorch thereby causing duplication. ALL of the code in Lightning makes sure the critical parts are called from ONLY one GPU
-- [setup_data()] Handles any data-related logic that might be dependent on the state of the current process or GPU, such as splitting the data set into train, validation, and test sets, or applying specific transformations.
-- [train_dataloader()] this method allow you to define train loader parameters such as batch size, pin_memory, shuffle etc.
-- [validation_dataloader()] this method allow you to define validation loader parameters such as batch size, pin_memory etc.
+[2] Data: The amount of change require in your data processing/loading code depends on how many abstraction functionalities of lightning you want you use. You can train your models without making any change and feed the lightning adapted model with standard train_dataloader, validation_dataloader. But if you do want to use lightning's data abstraction functionalities, you need to create a 'DataModule' class by extending lightning.LightningDataModule class, within there can be methods/functions for following tasks
+- [constructor( )] a constructor function that intialise all parameters/variables
+- [prepare_data( )] Used for any data-related setup that happens only once, such as loading raw datasets or preprocessing raw data.This is because each GPU will execute the same PyTorch thereby causing duplication. ALL of the code in Lightning makes sure the critical parts are called from ONLY one GPU
+- [setup_data( )] Handles any data-related logic that might be dependent on the state of the current process or GPU, such as splitting the data set into train, validation, and test sets, or applying specific transformations.
+- [train_dataloader( )] this method allow you to define train loader parameters such as batch size, pin_memory, shuffle etc.
+- [validation_dataloader( )] this method allow you to define validation loader parameters such as batch size, pin_memory etc.
 
 [3] Loss:
 
