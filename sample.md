@@ -41,7 +41,8 @@ Complete - This just need to be defined as a method within your model class. <br
 Minimal - You can train your models without making any change and define optimiser as standard pytorch ```optimiser = torch.AdamW(model.parameters(), lr=learning_rate)```.<br>
 Complete - This just need to be defined as a method within your model class.<br>
 
-[5] Training as Slurm sbatch job: To train as cluster the nodes and GPU numbers should match in trainer invocation and ```sbatch.sh``` file. As an example, to employ 5 nodes with 4 GPUs. Within you python training file you need to invoke trainer with following parameters.<br>
+[5] Training as Slurm sbatch job:<br>
+To train as cluster the nodes and GPU numbers should match in trainer invocation and ```sbatch.sh``` file. As an example, to employ 5 nodes with 4 GPUs. Within you python training file you need to invoke trainer with following parameters.<br>
 
 ```trainer = lightning.Trainer(accelerator='gpu',devices=4,num_nodes=5, strategy="ddp",callbacks=[checkpoint_callback,early_stopping ])``` ```# devices = gpus; num_nodes = nodes```<br>
 
@@ -63,17 +64,17 @@ srun python /mnt/scratchc/ralab/atif/path/train_model_multigpus.py
 ```
 
 #### Helpful toy examples links
-Above describtion gives rough idea but toy examples explain this in detail.
+Above description gives rough idea but toy examples explain this in detail.
 - [Adapting MNIST classifier to lightning](https://towardsdatascience.com/from-pytorch-to-pytorch-lightning-a-gentle-introduction-b371b7caaf09) 
 - [Adapting Bert language model to lightning on ROCm](https://rocm.blogs.amd.com/artificial-intelligence/pytorch-lightning/README.html)
 - [submitting a lightning job on SLURM](https://lightning.ai/docs/fabric/2.4.0/guide/multi_node/slurm.html)
 
 ### Using docker/singularity image
 
-- Copy the singularity image from scratchc: ```cp  /mnt/scratchc/ralab/software/pytorch_rocm6.2.3_ubuntu22.04_py3.10_pytorch_release_2.3.0.sif ./ ``` to your local folder ( running the image directly from this location will be mess up the conda env PATH variables)
+- Copy the singularity image from scratchc: ```cp  /mnt/scratchc/ralab/software/pytorch_rocm6.2.3_ubuntu22.04_py3.10_pytorch_release_2.3.0.sif ./ ``` to your local folder ( running the image directly from this location will mess up the conda env PATH variables)
 - Start this image as container: ```singularity exec --bind /mnt/scratchc/ralab/atif:/mnt pytorch_rocm6.2.3_ubuntu22.04_py3.10_pytorch_release_2.3.0.sif /bin/bash``` (bind/mount the directory where your data is using --bind)
 - Activate the conda enviroment that has all the packages you require + lightning package
-- You're now ready to train pytorch model on a single GPU. To train on multiple GPUs please follow the exact same process described above.
+- You're now ready to train pytorch models on a single GPU. To train on multiple GPUs please follow the exact same process described above.
 
 ### Performance expectations
 
@@ -82,10 +83,10 @@ Above describtion gives rough idea but toy examples explain this in detail.
 | -------- | ------- |------- |
 | 1 | 1 CUDA (NVIDIA CUDA L40(48G))   |     5 minutes 33 seconds   |
 | 1 | 1 ROCm (MI50(32G) GPU)    |    17 minutes 17 seconds    |
-| 2   | 2 x ROCm (MI50(32G) GPU)  |    8 minutes 35 seconds    |
-| 3   | 3 x ROCm (MI50(32G) GPU)  |    5 minutes 23 seconds    |
+| 2   | 1 x ROCm (MI50(32G) GPU)  |    8 minutes 35 seconds    |
+| 3   | 1 x ROCm (MI50(32G) GPU)  |    5 minutes 23 seconds    |
 
-
+**Take Away**: It takes ~3x ROCm (MI50(32G) GPUs to achieve same performance as a NVIDIA CUDA L40. 
 
 
 
