@@ -9,13 +9,13 @@ Start the pre-made pytorch conda environment called 'rocm_gpus' that exist in sc
 if you want to create this environment from the scratch please see the recipy.\
 You're now ready to train pytorch models either in interactive mode (jupyter notebook) or by submitting Slurm sbatch.sh job as on CUDA but using **a single gpu!** 
 #### Training on multiple GPUs
-Training models on multiple GPUs require each training batch to be split across GPUs and corresponding gradients to be syncronised. There are different ways of doing this, one of which is using [lightning ai](https://lightning.ai/) package. Below is a describtion of adapting your pytorch code for this including a couple links to toy examples.\
-lightning is a wrapper for pytorch's nn.module that simplify and abstract the process of training models. Adapting your pytorch code to lightning can be done in varying levels. Below we describe two extrem levels i.e. minimal and complete lightning adapted.In either case there are five places within your model training that require changes.\
+Training models on multiple GPUs require each training batch to be split across GPUs and corresponding gradients to be syncronised. There are different ways of doing this, one of which is using [lightning ai](https://lightning.ai/) package. Below is a describtion of adapting your pytorch code for this including a couple of links to toy examples.\
+lightning is a wrapper for pytorch's nn.module that simplify and abstract the process of training models. Adapting your pytorch code to lightning can be done in varying levels. Below we describe two extrem levels i.e. minimal and complete lightning adapted.In either case there are five places within your model training that might require changes.\
 
 [1] Model:\
 Minimal - You can adapt your model to lightining by changing just one thing- most pytorch models are made by extending nn.Module, the only change required is using lightning.LightningModule instead of nn.Module i.e. swap nn.Module with L.LightningModule in the code.\
-Complete - To leverage full abstraction functionalities of lightning your pytorch model can be defined as class that can have following methods
-- [constructor( )] a constructor function that intialise all parameters/variables
+Complete - To leverage full abstraction functionalities of lightning your pytorch model can be defined as class that have following methods
+- [constructor( )] a constructor method that intialise all parameters/variables
 - [forward( )] This define forward pass of the model through all layers and blocks.
 - [training_step( )] This defines what should happen in a single training iteration (batch).
 - [configure_optimiser( )] this defines optimiser and its parameters.
@@ -25,19 +25,23 @@ Complete - To leverage full abstraction functionalities of lightning your pytorc
 
 
 [2] Data:  
-Minimal - You can train your models without making any change and feed the lightning adapted model with standard train_dataloader, validation_dataloader. 
-Complete- But if you do want to use lightning's data abstraction functionalities, you need to create a 'DataModule' class by extending lightning.LightningDataModule class, within there can be methods/functions for following tasks
-- [constructor( )] a constructor function that intialise all parameters/variables
+Minimal - You can train your models without making any change and feed the lightning adapted model with standard pytorch train_dataloader, validation_dataloader. 
+Complete- But if you do want to use full lightning's data abstraction functionalities, you need to create a 'DataModule' class by extending lightning.LightningDataModule class with methods for following tasks
+- [constructor( )] a constructor method that intialise all parameters/variables
 - [prepare_data( )] Used for any data-related setup that happens only once, such as loading raw datasets or preprocessing raw data.This is because each GPU will execute the same PyTorch thereby causing duplication. ALL of the code in Lightning makes sure the critical parts are called from ONLY one GPU
 - [setup_data( )] Handles any data-related logic that might be dependent on the state of the current process or GPU, such as splitting the data set into train, validation, and test sets, or applying specific transformations.
 - [train_dataloader( )] this method allow you to define train loader parameters such as batch size, pin_memory, shuffle etc.
 - [validation_dataloader( )] this method allow you to define validation loader parameters such as batch size, pin_memory etc.
 
 [3] Loss:
+Minimal - You can train your models without making any change and define loss as standard pytorch criterion = nn.BCEWithLogitsLoss().
+Complete - This just need to be defined as a method within your model class. 
 
 [4] Optimiser:
+Minimal - You can train your models without making any change and define optimiser as standard pytorch optimiser = torch.AdamW(model.parameters(), lr=learning_rate).
+Complete - This just need to be defined as a method within your model class.
 
-[5] Slurm sbatch: 
+[5] Training as Slurm sbatch job: 
 
 
 
