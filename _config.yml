@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : "Atif Khan"
 title_separator          : "-"
 name                     : &name "Atif Khan"
-description              : &description "PhD Researcher (Machine Learning Scientist) at Newcastle University"
+description              : &description "Postdoctoral Fellow (Machine Learning Scientist) at University of Cambridge"
 url                      : https://atifkhanncl.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "atifkhanncl.github.io"
@@ -24,9 +24,9 @@ author:
   avatar           : "profile.jpg"
   name             : "Atif Khan"
   pronouns         : #  
-  bio              : "PhD Candidate at Newcastle University. Expert in Machine Learning, Computer Vision applied to Biomedicine"
+  bio              : "Postdoctoral Fellow at University of Cambridge. Expert in Machine Learning, Computer Vision applied to Biomedicine"
   location         : "Earth"
-  employer         : "Newcastle University"
+  employer         : "University of Cambridge"
   uri              : # URL
   email            : "atif.khan.ncl@gmail.com" 
 
